@@ -13,6 +13,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { MovementsProvider } from '../providers/movements/movements';
+import { RecognitoProvider } from '../providers/recognito/recognito';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { MovementsProvider } from '../providers/movements/movements';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    MovementsProvider
+    MovementsProvider,
+    RecognitoProvider
   ]
 })
 export class AppModule {}

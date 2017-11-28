@@ -14,7 +14,15 @@
   
   
   <ion-content padding>
-    <button ion-button full> (click)="takePicture()" Open camera</button>  
-    {{base64Image}}
+    <button ion-button full (click)="takePicture()">  Open camera</button>  
+    
+    <div *ngIf="reboot">
+      <h2>Hi {{person}}</h2>
+    </div>
+    <div *ngIf="!reboot">
+      <h2>Carregando...</h2>
+    </div>
+
+   
   </ion-content>
   

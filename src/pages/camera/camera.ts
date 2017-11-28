@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import {Camera} from 'ionic-native';
-
+import { Camera } from 'ionic-native';
+import { RecognitoProvider } from '../../providers/recognito/recognito';
 /**
  * Generated class for the CameraPage page.
  *
@@ -16,9 +16,12 @@ import {Camera} from 'ionic-native';
   templateUrl: 'camera.html',
 })
 export class CameraPage {
-  base64Image: any = "empty";
+  person: any = "";
+  reboot: boolean = true;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    public recognitoProvider:RecognitoProvider) {
   }
 
   ionViewDidLoad() {
@@ -26,13 +29,18 @@ export class CameraPage {
   }
 
   takePicture(){
+    this.reboot = false;
     Camera.getPicture({
-        destinationType: Camera.DestinationType.DATA_URL,
-        targetWidth: 1000,
-        targetHeight: 1000
+      destinationType: Camera.DestinationType.DATA_URL,
+      targetWidth: 1000,
+      targetHeight: 1000
     }).then((imageData) => {
       // imageData is a base64 encoded string
-        this.base64Image = "data:image/jpeg;base64," + imageData;
+      this.recognitoProvider.getPerson("data:image/jpeg;base64," + imageData)
+      .then(res=>{
+          this.reboot = true;
+          this.person = res.label;
+        })
     }, (err) => {
         console.log(err);
     });
