@@ -1,17 +1,14 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Contact
+      Configurations
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
-    </ion-item>
-  </ion-list>
+ <ion-item>
+    <ion-label fixed>Host</ion-label>
+    <ion-input [(ngModel)]="globalLink" (input)="setGlobalLink()" type="text" value=""></ion-input>
+  </ion-item>
 </ion-content>
